@@ -1,0 +1,33 @@
+spring:
+  profiles: # 개발 dev, 실제 real 로 많이씀
+    active: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/querydsl_study?serverTimezone=UTC&characterEncoding=UTF-8
+    username: sanghyunlee
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #create
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #show_sql: true // system.out 출력 로그
+        format_sql: true
+        use_sql_comments: true # query dsl 로그
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  logging:
+    level:
+      org.hibernate.SQL: debug #log로 query 출력
+      org.hibernate.type: trace #성능이 중요하면 남기지 않는다
+
+server:
+  port: 4000
+  address: 0.0.0.0
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript, application/json
+    min-response-size: 1024
+
