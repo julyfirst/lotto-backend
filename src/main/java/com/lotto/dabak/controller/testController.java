@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 @Log4j2
 public class testController {
-
     @GetMapping("/hello")
     public String hell() {
         return "hello";
