@@ -9,7 +9,7 @@ spring:
   #create
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         #show_sql: true // system.out 출력 로그

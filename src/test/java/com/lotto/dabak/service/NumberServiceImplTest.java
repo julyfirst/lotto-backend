@@ -3,38 +3,32 @@ package com.lotto.dabak.service;
 import com.lotto.dabak.component.RepositoryComponent;
 import com.lotto.dabak.dto.response.ResList;
 import com.lotto.dabak.dto.response.ResLottoNumber;
-import com.lotto.dabak.dto.response.ResNormal;
 import com.lotto.dabak.entity.LottoNumber;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 import java.util.stream.IntStream;
 
 
-/**
- * 로또 번호 관련 serviceImpl
- */
-@Service
-@Transactional
-@Log4j2
-@RequiredArgsConstructor
-public class NumberServiceImpl implements NumberService {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+class NumberServiceImplTest {
 
-    private final RepositoryComponent repository;
+    @Autowired
+    private RepositoryComponent repository;
 
 
-    /**
-     * 해당 갯수 만큼 로또번호 생성
-     * @param count
-     * @return
-     */
-    @Override
-    @Transactional
-    public ResList getLottoNumbers(int count) {
 
+    // 로또 생성 테스트 코드
+    @Test
+    @Rollback(false)
+    void getLottoNumbers() {
+        int count  = 5;
         ResList resList = new ResList();
 
         try{
@@ -53,10 +47,11 @@ public class NumberServiceImpl implements NumberService {
                 List<Integer> lottoNumbers = new ArrayList(numberList);
                 lottoNumberList.add(lottoNumbers);
                 resLottoNumber.setLottoNumberList(lottoNumberList);
+                System.out.println("lottoNumbers = " + lottoNumbers);
             }
 
-            // 로또 번호 저장
             for(List<Integer> lottoNumbers : resLottoNumber.getLottoNumberList()){
+                //System.out.println("lottoNumber는??= " + lottoNumbers);
 
                 LottoNumber lottoNumber = LottoNumber.builder()
                         .one(lottoNumbers.get(0))
@@ -72,6 +67,7 @@ public class NumberServiceImpl implements NumberService {
 
             resList.setData(resLottoNumber.getLottoNumberList());
 
+
         }catch (Exception e){
             e.printStackTrace();
             resList.setMessage("error");
@@ -80,9 +76,5 @@ public class NumberServiceImpl implements NumberService {
         }
 
 
-        return resList;
     }
-
-
-
 }
