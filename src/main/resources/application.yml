@@ -12,7 +12,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        #show_sql: true // system.out 출력 로그
+        show_sql: true #// system.out 출력 로그
         format_sql: true
         use_sql_comments: true # query dsl 로그
         dialect: org.hibernate.dialect.MySQL8Dialect
