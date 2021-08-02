@@ -35,6 +35,7 @@ public class NumberServiceImpl implements NumberService {
     @Transactional
     public ResList getLottoNumbers(int count) {
 
+
         ResList resList = new ResList();
 
         try{
