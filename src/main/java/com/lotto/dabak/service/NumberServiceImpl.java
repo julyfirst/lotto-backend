@@ -80,7 +80,6 @@ public class NumberServiceImpl implements NumberService {
             resList.setCode(500);
         }
 
-
         return resList;
     }
 
