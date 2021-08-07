@@ -27,7 +27,7 @@ public class NumberController {
     @GetMapping("/lotto")
     @ApiResponses({
             @ApiResponse(code=200, message="성공"),
-            @ApiResponse(code=403, message="비인증 요청", response = ResNormal.class),
+            @ApiResponse(code=500, message="서버 에러"),
     })
     public ResList getLottoNumberList(
             int count
@@ -43,7 +43,7 @@ public class NumberController {
     @GetMapping("/list/create-lotto")
     @ApiResponses({
             @ApiResponse(code=200, message="성공"),
-            @ApiResponse(code=403, message="비인증 요청", response = ResNormal.class),
+            @ApiResponse(code=500, message="서버 에러"),
     })
     public ResListV2<ResCreateLottoNumber> getCreateLottoNumberList(
             ReqPaging reqPaging
