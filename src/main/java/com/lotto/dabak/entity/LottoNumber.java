@@ -25,7 +25,7 @@ public class LottoNumber {
     @Column(name = "round")
     private Long round;
 
-    // 로또 번호
+    // 로또 번호 순서
     @Column(name = "one")
     private int one;
 

@@ -43,6 +43,8 @@ dependencies {
 	testCompileOnly 'junit:junit:4.12'
 	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.1.0'
 
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
+	implementation group: 'org.hibernate', name: 'hibernate-validator', version: '7.0.1.Final'
 
 
 

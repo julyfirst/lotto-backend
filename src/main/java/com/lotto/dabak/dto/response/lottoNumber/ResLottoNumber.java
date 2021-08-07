@@ -1,4 +1,4 @@
-package com.lotto.dabak.dto.response;
+package com.lotto.dabak.dto.response.lottoNumber;
 
 
 import lombok.Data;

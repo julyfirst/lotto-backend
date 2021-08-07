@@ -2,7 +2,7 @@ package com.lotto.dabak.service;
 
 import com.lotto.dabak.component.RepositoryComponent;
 import com.lotto.dabak.dto.response.ResList;
-import com.lotto.dabak.dto.response.ResLottoNumber;
+import com.lotto.dabak.dto.response.lottoNumber.ResLottoNumber;
 import com.lotto.dabak.entity.LottoNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 
 @RunWith(SpringRunner.class)

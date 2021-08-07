@@ -1,24 +1,25 @@
 package com.lotto.dabak.service;
 
 import com.lotto.dabak.component.RepositoryComponent;
+import com.lotto.dabak.dto.request.paging.ReqPaging;
 import com.lotto.dabak.dto.response.ResList;
-import com.lotto.dabak.dto.response.ResLottoNumber;
-import com.lotto.dabak.dto.response.ResNormal;
+import com.lotto.dabak.dto.response.lottoNumber.ResCreateLottoNumber;
+import com.lotto.dabak.dto.response.lottoNumber.ResLottoNumber;
 import com.lotto.dabak.entity.LottoNumber;
+import com.lotto.dabak.vo.PageVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 
 /**
  * 로또 번호 관련 serviceImpl
  */
 @Service
-@Transactional
 @Log4j2
 @RequiredArgsConstructor
 public class NumberServiceImpl implements NumberService {
@@ -33,7 +34,7 @@ public class NumberServiceImpl implements NumberService {
      */
     @Override
     @Transactional
-    public ResList getLottoNumbers(int count) {
+    public ResList getLottoNumberList(int count) {
 
 
         ResList resList = new ResList();
@@ -75,7 +76,7 @@ public class NumberServiceImpl implements NumberService {
 
         }catch (Exception e){
             e.printStackTrace();
-            resList.setMessage("error");
+            resList.setMessage("server-error");
             resList.setSuccessful(false);
             resList.setCode(500);
         }
@@ -83,6 +84,32 @@ public class NumberServiceImpl implements NumberService {
         return resList;
     }
 
+    /**
+     * 생성된 로또번호 출력
+     * @param reqPaging
+     * @return
+     */
+    @Override
+    public PageVO<ResCreateLottoNumber> getCreateLottoList(ReqPaging reqPaging) {
+
+        ResList resList = new ResList();
+        PageVO<ResCreateLottoNumber> resCreateLottoNumberPageVO = null;
+
+        try{
+            Page<ResCreateLottoNumber> createLottoNumberList = repository.getLottoNumberRepository().findByLottoNumberPaging(reqPaging);
+            // 페이징 셋팅
+           resCreateLottoNumberPageVO = new PageVO<>(createLottoNumberList.getContent(), createLottoNumberList.getTotalElements(), reqPaging);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            resList.setMessage("server-error");
+            resList.setSuccessful(false);
+            resList.setCode(500);
+        }
+
+        return resCreateLottoNumberPageVO;
+
+    }
 
 
 }

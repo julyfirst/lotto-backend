@@ -1,8 +1,12 @@
 package com.lotto.dabak.controller;
 
 import com.lotto.dabak.component.ServiceComponent;
+import com.lotto.dabak.dto.request.paging.ReqPaging;
 import com.lotto.dabak.dto.response.ResList;
+import com.lotto.dabak.dto.response.ResListV2;
 import com.lotto.dabak.dto.response.ResNormal;
+import com.lotto.dabak.dto.response.lottoNumber.ResCreateLottoNumber;
+import com.lotto.dabak.vo.PageVO;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -25,16 +29,32 @@ public class NumberController {
             @ApiResponse(code=200, message="성공"),
             @ApiResponse(code=403, message="비인증 요청", response = ResNormal.class),
     })
-    public ResList getLottoNumbers(
+    public ResList getLottoNumberList(
             int count
     ) {
 
-        ResList lottoNumbers = service.getNumberService().getLottoNumbers(count);
+        ResList lottoNumbers = service.getNumberService().getLottoNumberList(count);
 
         return lottoNumbers;
     }
 
 
+    @ApiOperation("생성된 로또 번호 리스트")
+    @GetMapping("/list/create-lotto")
+    @ApiResponses({
+            @ApiResponse(code=200, message="성공"),
+            @ApiResponse(code=403, message="비인증 요청", response = ResNormal.class),
+    })
+    public ResListV2<ResCreateLottoNumber> getCreateLottoNumberList(
+            ReqPaging reqPaging
+
+    ) {
+        ResListV2 res = new ResListV2();
+        PageVO<ResCreateLottoNumber> lottoNumbers = service.getNumberService().getCreateLottoList(reqPaging);
+        res.setData(lottoNumbers.getList());
+        res.setPaging(lottoNumbers.getPaging());
+        return res;
+    }
 
 
 
