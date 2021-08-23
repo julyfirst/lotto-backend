@@ -25,5 +25,4 @@ public class ResList<T> implements Serializable {
     @ApiModelProperty("응답 response")
     private List<T> response;
 
-
 }
