@@ -22,8 +22,8 @@ public class ResList<T> implements Serializable {
     @ApiModelProperty("성공여부")
     private boolean successful = true;
 
-    @ApiModelProperty("응답 data")
-    private List<T> data;
+    @ApiModelProperty("응답 response")
+    private List<T> response;
 
 
 }

@@ -72,7 +72,7 @@ public class NumberServiceImpl implements NumberService {
 
             }
 
-            resList.setData(resLottoNumber.getLottoNumberList());
+            resList.setResponse(resLottoNumber.getLottoNumberList());
 
         }catch (Exception e){
             e.printStackTrace();

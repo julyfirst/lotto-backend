@@ -64,7 +64,7 @@ class NumberServiceImplTest {
 
             }
 
-            resList.setData(resLottoNumber.getLottoNumberList());
+            resList.setResponse(resLottoNumber.getLottoNumberList());
 
 
         }catch (Exception e){

@@ -51,7 +51,7 @@ public class NumberController {
     ) {
         ResListV2 res = new ResListV2();
         PageVO<ResCreateLottoNumber> lottoNumbers = service.getNumberService().getCreateLottoList(reqPaging);
-        res.setData(lottoNumbers.getList());
+        res.setResponse(lottoNumbers.getList());
         res.setPaging(lottoNumbers.getPaging());
         return res;
     }

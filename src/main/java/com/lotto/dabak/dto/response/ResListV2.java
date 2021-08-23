@@ -15,8 +15,8 @@ import java.util.List;
 @Data
 public class ResListV2<T> implements Serializable {
 
-    @ApiModelProperty("응답 data")
-    private List<T> data;
+    @ApiModelProperty("응답 response")
+    private List<T> response;
 
     @ApiModelProperty("페이징 정보")
     private ResPaging paging = new ResPaging();
